@@ -1,0 +1,71 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "main": ".open-next/worker.js",
+  // UWAGA: nazwa Workera na produkcji. Zmień na docelową nazwę przed
+  // pierwszym deployem — zmiana nazwy PO deployu tworzy nowego Workera.
+  "name": "agencja-web",
+  "compatibility_date": "2025-08-15",
+  "compatibility_flags": [
+    // Wymagane przez Payload/Next (część API Node.js emulowana w Workers).
+    // https://developers.cloudflare.com/workers/configuration/compatibility-flags/#nodejs-compatibility-flag
+    "nodejs_compat",
+    // Blokuje fetch() do prywatnych/wewnętrznych adresów IP z poziomu
+    // Workera — domyślna ochrona przed SSRF, patrz `skipSafeFetch` w Media.
+    // https://developers.cloudflare.com/workers/configuration/compatibility-flags/#global-fetch-strictly-public
+    "global_fetch_strictly_public",
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS",
+  },
+  "observability": {
+    // Workers Logs wyłączone domyślnie (liczą się do limitu/kosztu) —
+    // włącz świadomie w Cloudflare Dashboard, patrz README.
+    "enabled": false,
+  },
+
+  // ---- PRODUKCJA (środowisko domyślne) -------------------------------
+  "d1_databases": [
+    {
+      "binding": "D1",
+      // TODO: podmień po `wrangler d1 create agencja-web-production`
+      "database_id": "REPLACE_WITH_PRODUCTION_D1_ID",
+      "database_name": "agencja-web-production",
+      "remote": true,
+    },
+  ],
+  "r2_buckets": [
+    {
+      "binding": "R2",
+      // TODO: utwórz `wrangler r2 bucket create agencja-web-production-media`
+      "bucket_name": "agencja-web-production-media",
+    },
+  ],
+
+  // ---- STAGING --------------------------------------------------------
+  // Osobna baza D1 i bucket R2 — pełna izolacja danych staging/produkcja.
+  // Deploy: `CLOUDFLARE_ENV=staging pnpm run deploy`
+  "env": {
+    "staging": {
+      "name": "agencja-web-staging",
+      "d1_databases": [
+        {
+          "binding": "D1",
+          // TODO: podmień po `wrangler d1 create agencja-web-staging`
+          "database_id": "REPLACE_WITH_STAGING_D1_ID",
+          "database_name": "agencja-web-staging",
+          "remote": true,
+        },
+      ],
+      "r2_buckets": [
+        {
+          "binding": "R2",
+          "bucket_name": "agencja-web-staging-media",
+        },
+      ],
+      "vars": {
+        "PAYLOAD_LOG_LEVEL": "debug",
+      },
+    },
+  },
+}

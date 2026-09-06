@@ -1,0 +1,6 @@
+# Nagłówki dla plików statycznych serwowanych bezpośrednio przez Cloudflare
+# Assets binding (middleware Next.js ich nie dotyka).
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY

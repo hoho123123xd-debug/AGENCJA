@@ -1,0 +1,47 @@
+/*
+ * Celowo minimalny, "gołowy" stylesheet — to jest fundament techniczny,
+ * NIE finalny design (który projektujemy w kolejnym etapie). Tu liczy się
+ * tylko: brak layout shiftu, czytelny fokus, semantyczna hierarchia.
+ */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: #000;
+  color: #fff;
+  padding: 8px 16px;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.placeholder {
+  padding: 40px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
