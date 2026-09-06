@@ -1,45 +1,34 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 
-import { getPayloadClient } from '@/lib/payload'
-import { buildMetadata } from '@/lib/seo'
-import { RenderBlocks } from '@/components/RenderBlocks'
+import { Hero } from '@/components/home/Hero'
+import { SolutionsSelector } from '@/components/home/SolutionsSelector'
+import { Showroom } from '@/components/home/Showroom'
+import { ProblemSolution } from '@/components/home/ProblemSolution'
+import { Process } from '@/components/home/Process'
+import { TechEcosystem } from '@/components/home/TechEcosystem'
+import { FinalCta } from '@/components/home/FinalCta'
 
-export const dynamic = 'force-dynamic'
-
-const getData = async () => {
-  const payload = await getPayloadClient()
-  const [{ docs }, settings] = await Promise.all([
-    payload.find({ collection: 'pages', where: { slug: { equals: 'home' } }, limit: 1 }),
-    payload.findGlobal({ slug: 'settings' }),
-  ])
-  return { page: docs[0] ?? null, settings }
+// Strona główna jest świadomie bespoke (nie generyczny page builder) — patrz
+// src/content/home.ts. Treść jest wydzielona do zwykłych obiektów, więc
+// przeniesienie jej pod Payload (osobny Global) później nie wymaga zmian
+// w komponentach, tylko podmiany źródła danych. Brak odczytów z bazy tutaj
+// pozwala w pełni statycznie wyrenderować tę stronę.
+export const metadata: Metadata = {
+  title: 'Agencja Stron — Cyfrowe rozwiązania, które napędzają Twój biznes',
+  description:
+    'Projektujemy i tworzymy strony, sklepy, aplikacje i systemy, które rozwiązują realne problemy biznesowe — nie tylko dobrze wyglądają.',
 }
 
-export const generateMetadata = async (): Promise<Metadata> => {
-  const { page, settings } = await getData()
-  return buildMetadata(page, settings)
-}
-
-export default async function HomePage() {
-  const { page } = await getData()
-
-  if (!page) {
-    return (
-      <section className="placeholder">
-        <h1>Fundament techniczny gotowy.</h1>
-        <p>
-          Nie utworzono jeszcze strony ze slugiem <code>home</code>. Zaloguj się do{' '}
-          <Link href="/admin">panelu administracyjnego</Link> i utwórz pierwszą stronę w kolekcji Pages, żeby zobaczyć
-          ją tutaj.
-        </p>
-      </section>
-    )
-  }
-
+export default function HomePage() {
   return (
-    <article>
-      <RenderBlocks blocks={page.layout} />
-    </article>
+    <>
+      <Hero />
+      <SolutionsSelector />
+      <Showroom />
+      <ProblemSolution />
+      <Process />
+      <TechEcosystem />
+      <FinalCta />
+    </>
   )
 }

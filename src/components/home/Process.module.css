@@ -1,0 +1,171 @@
+.section {
+  background: var(--bg-void);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.heading {
+  margin-top: var(--space-4);
+  font-size: var(--fs-h1);
+  max-width: 22ch;
+}
+
+.lede {
+  margin-top: var(--space-4);
+  max-width: 44ch;
+}
+
+.aside {
+  flex-shrink: 0;
+  max-width: 260px;
+  padding: var(--space-5);
+  border: 1px solid var(--line-hairline);
+  border-radius: var(--radius-md);
+  background: var(--bg-panel);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.asideTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-body-lg);
+}
+
+.asideText {
+  font-size: var(--fs-small);
+  color: var(--text-tertiary);
+}
+
+/* ---------------- Ścieżka ---------------- */
+
+.path {
+  position: relative;
+  margin-top: clamp(4rem, 3rem + 4vw, 7rem);
+  height: clamp(420px, 32vw, 560px);
+}
+
+.pathSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.pathLine,
+.pathDrawn {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+
+.pathDrawn {
+  transition: stroke-dashoffset 1.8s var(--ease-out);
+  stroke-dashoffset: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pathLine,
+  .pathDrawn {
+    stroke-dashoffset: 0;
+    transition: none;
+  }
+}
+
+.node {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.nodeInner {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+}
+
+.nodeDot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--bg-panel);
+  border: 1px solid var(--line-pink);
+  box-shadow: 0 0 0 6px var(--bg-void), 0 0 24px 2px var(--pink-glow-soft);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--pink-400);
+  flex-shrink: 0;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.nodeInner:hover .nodeDot {
+  transform: scale(1.08);
+}
+
+.nodeCard {
+  width: 190px;
+  padding: var(--space-4);
+  border: 1px solid var(--line-hairline);
+  border-radius: var(--radius-md);
+  background: var(--bg-panel-raised);
+  text-align: center;
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.nodeInner:hover .nodeCard {
+  border-color: var(--line-pink);
+  transform: translateY(-2px);
+}
+
+.nodeCard h3 {
+  font-size: var(--fs-small);
+  font-weight: 700;
+}
+
+.nodeCard p {
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  line-height: var(--lh-snug);
+}
+
+@media (max-width: 900px) {
+  .path {
+    height: auto;
+  }
+
+  .pathSvg {
+    display: none;
+  }
+
+  .node {
+    position: static;
+  }
+
+  .nodeInner {
+    position: static;
+    transform: none;
+    flex-direction: row;
+    text-align: left;
+    margin-bottom: var(--space-6);
+  }
+
+  .nodeCard {
+    width: auto;
+    text-align: left;
+  }
+}

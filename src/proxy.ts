@@ -34,7 +34,13 @@ const publicCsp = (nonce: string) =>
   [
     "default-src 'self'",
     `script-src 'self' 'nonce-${nonce}'`,
-    `style-src 'self' 'nonce-${nonce}'`,
+    // `unsafe-inline` TYLKO dla style-src, świadomie: sekcje strony pozycjonują
+    // elementy (chaos words, węzły procesu, orbit technologii, tilt hero pod
+    // kursorem) przez inline `style`/`element.style.setProperty`, a CSP nie ma
+    // mechanizmu nonce dla atrybutu `style` (tylko dla tagów <style>/<script>).
+    // script-src zostaje w pełni restrykcyjny (nonce, bez unsafe-inline/eval) —
+    // to on jest realnym wektorem XSS, nie inline style.
+    "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https:",
     "font-src 'self'",
     "connect-src 'self'",

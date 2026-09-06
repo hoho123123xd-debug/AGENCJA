@@ -1,0 +1,458 @@
+.section {
+  background: var(--bg-void);
+}
+
+.heading {
+  margin-top: var(--space-4);
+  font-size: var(--fs-h1);
+  max-width: 20ch;
+}
+
+.lede {
+  margin-top: var(--space-4);
+  max-width: 46ch;
+  font-size: var(--fs-body-lg);
+}
+
+/* ---------------- Tabs ---------------- */
+
+.tabs {
+  margin-top: var(--space-8);
+  overflow-x: auto;
+}
+
+.tabs > div {
+  display: flex;
+  gap: var(--space-2);
+  width: max-content;
+  border-bottom: 1px solid var(--line-hairline);
+}
+
+.tab,
+.tabActive {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.1rem;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--text-tertiary);
+  border-bottom: 2px solid transparent;
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+  white-space: nowrap;
+}
+
+.tab:hover {
+  color: var(--text-secondary);
+}
+
+.tabActive {
+  color: var(--text-primary);
+  border-color: var(--pink-500);
+}
+
+.tabIndex {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: inherit;
+  opacity: 0.6;
+}
+
+/* ---------------- Frame ---------------- */
+
+.frameWrap {
+  margin-top: var(--space-8);
+}
+
+.frame {
+  border: 1px solid var(--line-hairline);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-panel);
+  box-shadow: var(--shadow-panel);
+}
+
+.frameBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: 0.85rem 1.1rem;
+  border-bottom: 1px solid var(--line-hairline);
+  background: var(--bg-panel-raised);
+}
+
+.frameDots {
+  display: flex;
+  gap: 5px;
+}
+
+.frameDots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--line-hairline-strong);
+}
+
+.frameUrl {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--text-tertiary);
+  background: var(--bg-panel);
+  border: 1px solid var(--line-hairline);
+  border-radius: var(--radius-full);
+  padding: 0.3rem 0.9rem;
+}
+
+.frameBody {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: var(--space-8);
+  padding: var(--space-8);
+  animation: frameIn var(--dur-slow) var(--ease-out);
+}
+
+@keyframes frameIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frameBody {
+    animation: none;
+  }
+}
+
+.frameInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  justify-content: center;
+}
+
+.frameEyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pink-400);
+}
+
+.frameInfo h3 {
+  font-size: var(--fs-h3);
+}
+
+.frameInfo p {
+  font-size: var(--fs-small);
+  max-width: 40ch;
+}
+
+.frameActions {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.frameVisual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line-hairline);
+  border-radius: var(--radius-md);
+  background: radial-gradient(120% 120% at 80% 0%, rgba(255, 45, 135, 0.08), transparent 60%);
+  padding: var(--space-5);
+  min-height: 280px;
+}
+
+@media (max-width: 900px) {
+  .frameBody {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------- Controls ---------------- */
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-5);
+}
+
+.dots {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.dot,
+.dotActive {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--line-hairline-strong);
+  width: 6px;
+  transition:
+    width var(--dur-base) var(--ease-out),
+    background var(--dur-base) var(--ease-out);
+}
+
+.dotActive {
+  width: 22px;
+  background: var(--pink-500);
+}
+
+.arrows {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.counter {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  color: var(--text-tertiary);
+}
+
+.arrows button {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line-hairline-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out);
+}
+
+.arrows button:hover {
+  border-color: var(--pink-400);
+  background: var(--pink-glow-soft);
+}
+
+/* ---------------- Wizualizacje demo ---------------- */
+
+.visWebsite {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.visWebsiteHero {
+  aspect-ratio: 16/8;
+  border-radius: var(--radius-sm);
+  background:
+    radial-gradient(circle at 25% 30%, rgba(255, 143, 191, 0.4), transparent 60%),
+    radial-gradient(circle at 75% 70%, rgba(58, 85, 201, 0.4), transparent 60%),
+    linear-gradient(160deg, #1a1522, #100e17);
+}
+
+.visWebsiteRow {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.visWebsiteRow span {
+  flex: 1;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--bg-panel-raised);
+  border: 1px solid var(--line-hairline);
+}
+
+.visShop {
+  width: 100%;
+  max-width: 380px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 0.75rem;
+}
+
+.visShopGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.visShopItem {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  background: linear-gradient(150deg, rgba(255, 143, 191, 0.35), rgba(58, 85, 201, 0.35));
+}
+
+.visShopCart {
+  background: var(--bg-panel-raised);
+  border: 1px solid var(--line-hairline);
+  border-radius: 10px;
+  padding: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.visShopCartTitle {
+  height: 8px;
+  width: 60%;
+  border-radius: 4px;
+  background: var(--line-hairline-strong);
+}
+
+.visShopCartRow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.visShopCartThumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.visShopCartLine {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.visShopCartBtn {
+  margin-top: 0.3rem;
+  padding: 0.4rem;
+  font-size: 0.55rem;
+  text-align: center;
+  justify-content: center;
+  box-shadow: none;
+}
+
+.visCms {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.visCmsBlock {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-hairline);
+  background: var(--bg-panel-raised);
+  font-size: var(--fs-small);
+}
+
+.visCmsHandle {
+  color: var(--text-tertiary);
+}
+
+.visCmsTag {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--pink-400);
+  border: 1px solid var(--line-pink);
+  border-radius: var(--radius-full);
+  padding: 0.1rem 0.5rem;
+}
+
+.visAdmin {
+  width: 100%;
+  max-width: 380px;
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 0.6rem;
+}
+
+.visAdminSide {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.visAdminSide span {
+  font-size: 0.6rem;
+  padding: 0.4rem 0.5rem;
+  border-radius: 6px;
+  color: var(--text-tertiary);
+  background: transparent;
+}
+
+.visAdminSideActive {
+  color: var(--text-primary) !important;
+  background: var(--bg-panel-raised) !important;
+  border-left: 2px solid var(--pink-500);
+}
+
+.visAdminTable {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.visAdminTableHead span,
+.visAdminTableRow span {
+  display: inline-block;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--line-hairline-strong);
+  margin-right: 0.4rem;
+  width: 28%;
+}
+
+.visAdminTableHead {
+  opacity: 0.7;
+  margin-bottom: 0.2rem;
+}
+
+.visAdminTableRow {
+  background: var(--bg-panel-raised);
+  border: 1px solid var(--line-hairline);
+  border-radius: 6px;
+  padding: 0.45rem 0.5rem;
+}
+
+.visKanban {
+  width: 100%;
+  max-width: 380px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.visKanbanCol {
+  background: var(--bg-panel-raised);
+  border: 1px solid var(--line-hairline);
+  border-radius: 8px;
+  padding: 0.45rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.visKanbanColTitle {
+  font-size: 0.55rem;
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+}
+
+.visKanbanCard {
+  height: 22px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--line-hairline);
+}

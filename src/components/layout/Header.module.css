@@ -1,0 +1,121 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid transparent;
+  background: rgba(5, 6, 8, 0.5);
+  backdrop-filter: blur(0px);
+  transition:
+    background var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    backdrop-filter var(--dur-base) var(--ease-out);
+}
+
+.header.scrolled {
+  background: rgba(5, 6, 8, 0.82);
+  backdrop-filter: blur(14px);
+  border-bottom-color: var(--line-hairline);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  height: 84px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-shrink: 0;
+}
+
+.mark {
+  width: 34px;
+  height: 34px;
+  color: var(--pink-500);
+  flex-shrink: 0;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  line-height: 1;
+}
+
+.brandName {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.brandTag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav ul {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav a {
+  position: relative;
+  font-size: var(--fs-small);
+  color: var(--text-secondary);
+  padding-block: 0.5rem;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  height: 1px;
+  background: var(--pink-400);
+  transition: right var(--dur-base) var(--ease-out);
+}
+
+.nav a:hover {
+  color: var(--text-primary);
+}
+
+.nav a:hover::after {
+  right: 0;
+}
+
+.cta {
+  flex-shrink: 0;
+  padding: 0.7rem 1.3rem;
+  font-size: var(--fs-small);
+}
+
+@media (max-width: 960px) {
+  .nav {
+    display: none;
+  }
+
+  .brandTag {
+    display: none;
+  }
+}

@@ -1,0 +1,97 @@
+/*
+ * Design tokens — Agencja Stron.
+ * Premium, dark digital-agency system: czerń/grafit, subtelna granatowa
+ * poświata, intensywny róż jako jedyny mocny akcent. Zmieniaj TU, nie
+ * w komponentach — każdy komponent sięga wyłącznie po zmienne.
+ */
+:root {
+  --bg-void: #050608;
+  --bg-canvas: #07080c;
+  --bg-panel: #0c0e15;
+  --bg-panel-raised: #12141d;
+  --bg-panel-hover: #171a24;
+
+  /* ---- Obramowania ---- */
+  --line-hairline: rgba(255, 255, 255, 0.08);
+  --line-hairline-strong: rgba(255, 255, 255, 0.16);
+  --line-pink: rgba(255, 45, 135, 0.55);
+
+  /* ---- Tekst ---- */
+  --text-primary: #f5f6f8;
+  --text-secondary: #9aa0af;
+  --text-tertiary: #5f6577;
+  --text-on-accent: #0a0510;
+
+  /* ---- Akcent róż ---- */
+  --pink-500: #ff2d87;
+  --pink-400: #ff5aa0;
+  --pink-300: #ff8cbf;
+  --pink-glow: rgba(255, 45, 135, 0.35);
+  --pink-glow-soft: rgba(255, 45, 135, 0.14);
+  --gradient-pink: linear-gradient(100deg, #ff2d87 0%, #ff6f9c 55%, #ffb199 100%);
+
+  /* ---- Akcent granat (światło otoczenia) ---- */
+  --navy-500: #3a55c9;
+  --navy-glow: rgba(58, 85, 201, 0.28);
+  --navy-glow-soft: rgba(58, 85, 201, 0.12);
+
+  /* ---- Typografia ---- */
+  --font-display: var(--font-space-grotesk), 'Segoe UI', sans-serif;
+  --font-body: var(--font-inter), 'Segoe UI', sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  --fs-hero: clamp(2.75rem, 2.1rem + 2.6vw, 4.4rem);
+  --fs-h1: clamp(2.25rem, 1.9rem + 1.6vw, 3.25rem);
+  --fs-h2: clamp(1.75rem, 1.5rem + 1vw, 2.5rem);
+  --fs-h3: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  --fs-body-lg: 1.125rem;
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-micro: 0.75rem;
+
+  --lh-tight: 1.08;
+  --lh-snug: 1.3;
+  --lh-normal: 1.6;
+
+  /* ---- Spacing ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 2.5rem;
+  --space-8: 3rem;
+  --space-9: 4rem;
+  --space-10: 5rem;
+  --space-section: clamp(4.5rem, 4rem + 3vw, 8rem);
+
+  /* ---- Layout ---- */
+  --content-max: 1360px;
+  --content-pad: clamp(1.5rem, 1rem + 2vw, 4rem);
+
+  /* ---- Radii ---- */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 28px;
+  --radius-full: 999px;
+
+  /* ---- Ruch ---- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 180ms;
+  --dur-base: 320ms;
+  --dur-slow: 620ms;
+
+  /* ---- Cienie / poświaty ---- */
+  --shadow-panel: 0 30px 80px -30px rgba(0, 0, 0, 0.7);
+  --shadow-pink: 0 20px 60px -18px var(--pink-glow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur-base: 0ms;
+    --dur-slow: 0ms;
+  }
+}

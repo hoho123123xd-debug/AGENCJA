@@ -1,0 +1,144 @@
+.section {
+  background: var(--bg-panel);
+}
+
+.heading {
+  margin-top: var(--space-4);
+  font-size: var(--fs-h1);
+  max-width: 26ch;
+}
+
+.lede {
+  margin-top: var(--space-4);
+  max-width: 50ch;
+}
+
+.orbitWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(3rem, 2rem + 4vw, 5rem);
+}
+
+.orbit {
+  position: relative;
+  width: min(680px, 100%);
+  aspect-ratio: 1;
+}
+
+.orbitLines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.orbitLines line {
+  transition:
+    stroke var(--dur-base) var(--ease-out),
+    stroke-width var(--dur-base) var(--ease-out);
+}
+
+.hub {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 42%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid var(--line-hairline-strong);
+  background: radial-gradient(120% 120% at 30% 20%, rgba(58, 85, 201, 0.22), var(--bg-panel-raised) 70%);
+  box-shadow: var(--shadow-panel);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.5rem;
+  padding: 12%;
+}
+
+.hubLabel {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(0.95rem, 0.8rem + 0.6vw, 1.3rem);
+  color: var(--pink-400);
+}
+
+.hubUsage {
+  font-size: clamp(0.65rem, 0.6rem + 0.3vw, 0.8rem);
+  line-height: var(--lh-snug);
+  color: var(--text-secondary);
+}
+
+.node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.nodeMonogram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--bg-panel-raised);
+  border: 1px solid var(--line-hairline-strong);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.node:hover .nodeMonogram {
+  transform: scale(1.08);
+  border-color: var(--line-pink);
+}
+
+.nodeActive .nodeMonogram {
+  color: var(--pink-400);
+  border-color: var(--pink-500);
+  box-shadow: 0 0 0 6px var(--pink-glow-soft);
+}
+
+.nodeLabel {
+  font-size: 0.65rem;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.nodeActive .nodeLabel {
+  color: var(--text-primary);
+}
+
+@media (max-width: 720px) {
+  .orbit {
+    width: 100%;
+  }
+
+  .nodeMonogram {
+    width: 40px;
+    height: 40px;
+    font-size: 0.6rem;
+  }
+
+  .nodeLabel {
+    display: none;
+  }
+
+  .hub {
+    width: 48%;
+  }
+}
