@@ -2,6 +2,12 @@ import { withPayload } from '@payloadcms/next/withPayload'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Dev server Next.js domyślnie odrzuca requesty z hostem innym niż
+  // localhost (ochrona przed DNS rebinding) — bez tego podgląd w chmurowych
+  // IDE (Replit, Codespaces, Gitpod) pokazuje "Blocked request". Dotyczy
+  // WYŁĄCZNIE `next dev`, nie ma wpływu na build/produkcję na Cloudflare.
+  allowedDevOrigins: ['*.replit.dev', '*.repl.co'],
+
   images: {
     // Media jest serwowane przez własny endpoint Payload (R2), nie przez
     // zewnętrzne domeny — ogranicza to next/image do zaufanego źródła.
