@@ -134,6 +134,11 @@ textarea:focus-visible,
   box-shadow: 0 0 12px 2px var(--pink-glow);
 }
 
+.pageHeading {
+  margin-top: var(--space-4);
+  font-size: var(--fs-h1);
+}
+
 .gradientText {
   background: var(--gradient-pink);
   -webkit-background-clip: text;

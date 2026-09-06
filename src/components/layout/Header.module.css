@@ -68,7 +68,11 @@
   justify-content: center;
 }
 
-.nav ul {
+/* `>` wszędzie celowo — MegaMenu renderuje własne <ul>/<a> zagnieżdżone
+   wewnątrz <nav> (jako dziecko .hasMega); selektor potomny (spacja) łapałby
+   też JEGO elementy i wygrywał specyficznością z klasami MegaMenu.module.css
+   (ZWERYFIKOWANE: dokładnie to psuło layout mega menu). */
+.nav > ul {
   display: flex;
   align-items: center;
   gap: var(--space-6);
@@ -77,7 +81,7 @@
   padding: 0;
 }
 
-.nav a {
+.nav > ul > li > a {
   position: relative;
   font-size: var(--fs-small);
   color: var(--text-secondary);
@@ -85,7 +89,7 @@
   transition: color var(--dur-fast) var(--ease-out);
 }
 
-.nav a::after {
+.nav > ul > li > a::after {
   content: '';
   position: absolute;
   left: 0;
@@ -96,12 +100,42 @@
   transition: right var(--dur-base) var(--ease-out);
 }
 
-.nav a:hover {
+.nav > ul > li > a:hover {
   color: var(--text-primary);
 }
 
-.nav a:hover::after {
+.nav > ul > li > a:hover::after {
   right: 0;
+}
+
+.hasMega {
+  position: relative;
+}
+
+.megaTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.chevron {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.hasMega:hover .chevron,
+.hasMega:focus-within .chevron {
+  transform: translateY(1px) rotate(180deg);
+  color: var(--pink-400);
+}
+
+.hasMega:hover :global(.mega-menu-panel),
+.hasMega:focus-within :global(.mega-menu-panel) {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
 }
 
 .cta {

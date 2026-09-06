@@ -1,0 +1,38 @@
+.hero {
+  padding-top: clamp(4rem, 3rem + 4vw, 7rem);
+}
+
+.heading {
+  margin-top: var(--space-4);
+  font-size: var(--fs-h1);
+  max-width: 22ch;
+}
+
+.lede {
+  margin-top: var(--space-5);
+  max-width: 56ch;
+  font-size: var(--fs-body-lg);
+}
+
+.values {
+  margin-top: var(--space-9);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-6);
+}
+
+.value {
+  padding: var(--space-5);
+  border: 1px solid var(--line-hairline);
+  border-radius: var(--radius-md);
+  background: var(--bg-panel);
+}
+
+.value h3 {
+  font-size: var(--fs-body-lg);
+}
+
+.value p {
+  margin-top: 0.5rem;
+  font-size: var(--fs-small);
+}

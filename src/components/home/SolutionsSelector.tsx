@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
 import { solutions } from '@/content/home'
@@ -12,6 +12,17 @@ import styles from './SolutionsSelector.module.css'
 export const SolutionsSelector = () => {
   const [activeIndex, setActiveIndex] = useState(0)
   const active = solutions[activeIndex]
+
+  // Wejście z mega menu (np. /rozwiazania#ecommerce) od razu podświetla
+  // właściwą pozycję zamiast zawsze zaczynać od pierwszej. Musi być efektem
+  // (nie lazy initializer w useState) — `location.hash` nie istnieje przy
+  // SSR, więc odczyt na etapie renderu dałby mismatch hydracji.
+  useEffect(() => {
+    const id = window.location.hash.replace('#', '')
+    const index = solutions.findIndex((solution) => solution.id === id)
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- patrz komentarz wyżej: musi być efektem, nie lazy initializer
+    if (index >= 0) setActiveIndex(index)
+  }, [])
 
   return (
     <section id="rozwiazania" className={`section ${styles.section}`} aria-label="Rozwiązania">
@@ -30,8 +41,8 @@ export const SolutionsSelector = () => {
             rozwiązanie dopasowane do Twoich celów.
           </Reveal>
           <Reveal delay={180}>
-            <Link href="#showroom" className={styles.allLink}>
-              Zobacz wszystkie rozwiązania
+            <Link href="/kontakt" className={styles.allLink}>
+              Nie wiesz, co wybrać? Porozmawiajmy
               <span aria-hidden="true">→</span>
             </Link>
           </Reveal>

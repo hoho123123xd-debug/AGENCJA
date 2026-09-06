@@ -3,10 +3,10 @@ import Link from 'next/link'
 import styles from './Footer.module.css'
 
 const FOOTER_LINKS = [
-  { label: 'Rozwiązania', href: '#rozwiazania' },
-  { label: 'Możliwości', href: '#showroom' },
-  { label: 'Proces', href: '#proces' },
-  { label: 'Technologie', href: '#technologie' },
+  { label: 'Rozwiązania', href: '/rozwiazania' },
+  { label: 'Możliwości', href: '/#showroom' },
+  { label: 'Proces', href: '/proces' },
+  { label: 'Technologie', href: '/technologie' },
   { label: 'O nas', href: '/o-nas' },
   { label: 'Blog', href: '/blog' },
 ]
@@ -35,7 +35,7 @@ export const Footer = () => (
         </ul>
       </nav>
 
-      <Link href="#kontakt" className={`btn btnSecondary ${styles.cta}`}>
+      <Link href="/kontakt" className={`btn btnSecondary ${styles.cta}`}>
         Skontaktuj się
         <span className="btnIcon" aria-hidden="true">
           →

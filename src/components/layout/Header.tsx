@@ -3,13 +3,13 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
+import { MegaMenu } from './MegaMenu'
 import styles from './Header.module.css'
 
 const NAV_LINKS = [
-  { label: 'Rozwiązania', href: '#rozwiazania' },
-  { label: 'Możliwości', href: '#showroom' },
-  { label: 'Proces', href: '#proces' },
-  { label: 'Technologie', href: '#technologie' },
+  { label: 'Możliwości', href: '/#showroom' },
+  { label: 'Proces', href: '/proces' },
+  { label: 'Technologie', href: '/technologie' },
   { label: 'O nas', href: '/o-nas' },
   { label: 'Blog', href: '/blog' },
 ]
@@ -48,6 +48,15 @@ export const Header = () => {
 
         <nav className={styles.nav} aria-label="Główna">
           <ul>
+            <li className={styles.hasMega}>
+              <Link href="/rozwiazania" className={styles.megaTrigger}>
+                Rozwiązania
+                <span className={styles.chevron} aria-hidden="true">
+                  ⌄
+                </span>
+              </Link>
+              <MegaMenu />
+            </li>
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
                 <Link href={link.href}>{link.label}</Link>
@@ -56,7 +65,7 @@ export const Header = () => {
           </ul>
         </nav>
 
-        <Link href="#kontakt" className={`btn btnPrimary ${styles.cta}`}>
+        <Link href="/kontakt" className={`btn btnPrimary ${styles.cta}`}>
           Skontaktuj się
           <span className="btnIcon" aria-hidden="true">
             →

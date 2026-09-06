@@ -81,7 +81,7 @@ export const Hero = () => {
           </Reveal>
 
           <Reveal as="div" className={styles.actions} delay={240}>
-            <Link href="#kontakt" className="btn btnPrimary">
+            <Link href="/kontakt" className="btn btnPrimary">
               Porozmawiajmy o projekcie
               <span className="btnIcon" aria-hidden="true">
                 →
